@@ -19,6 +19,9 @@ class Channel:
         self.video_count = self.channel["items"][0]["statistics"]["videoCount"]
         self.count_views = self.channel["items"][0]["statistics"]["viewCount"]
 
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
     @property
     def channel_id(self):
         return self.__channel_id
@@ -39,3 +42,21 @@ class Channel:
         with open(file_name, "w") as data_file:
             json.dump(self.__dict__, data_file)
 
+
+    def __add__(self, other):
+        return int(self.count_subscribers) + int(other.count_subscribers)
+
+    def __sub__(self, other):
+        return int(self.count_subscribers) - int(other.count_subscribers)
+
+    def __lt__(self, other):
+        return int(self.count_subscribers) < int(other.count_subscribers)
+
+    def __le__(self, other):
+        return self.count_subscribers <= other.count_subscribers
+
+    def __gt__(self, other):
+        return int(self.count_subscribers) > int(other.count_subscribers)
+
+    def __ge__(self, other):
+        return int(self.count_subscribers) >= int(other.count_subscribers)
