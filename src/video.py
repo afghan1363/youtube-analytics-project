@@ -16,16 +16,16 @@ class Video:
             self.view_count: int = self.video_response['items'][0]['statistics']['viewCount']
             self.like_count: int = self.video_response['items'][0]['statistics']['likeCount']
             self.comment_count: int = self.video_response['items'][0]['statistics']['commentCount']
+            self.url: str = f'https://www.youtube.com/watch?v={self.video_id}'
         except IndexError:
             self.title = None
             self.view_count = None
             self.like_count = None
             self.comment_count = None
-      #  else:
-
+            self.url = None
 
     def __str__(self):
-        return self.video_title
+        return self.title
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о видео. Вставил для экспериментов"""
@@ -41,5 +41,5 @@ class PLVideo(Video):
 
 
 if __name__ == "__main__":
-    video1 = Video('AWX4JnAnjB11E')
+    video1 = Video('AWX4JnAnjBE')
     video1.print_info()
